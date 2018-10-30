@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuejs组件化开发todo应用</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+    <style>
+        .completed{text-decoration:line-through;}
+    </style>
+</head>
+<body>
+
+
+    <h1>Vuejs组件化开发todo应用</h1>
+    <div id="todo">
+        <!--
+            这里的`list`，就是`props`中的`list`;
+            `tasks`是`data`中的`tasks`;
+            相当于把 tasks 赋值给 list;
+        -->
+        <task-app :list="tasks"></task-app>
+        <!--<task-app :list="[{body:'learn oop',completed:false}]"></task-app>-->
+    </div>
+    <template id="task-template">
+        <ul>
+            <h3>My Tasks
+                <span v-show="remaining">({{remaining}})</span>
+            </h3><!--remaining：剩余的-->
+            <!--
+                也可以这么写：
+                @click="task.completed = !task.completed"
+            -->
+            <li
+                @click="toggleTasks(task)"
+                :class="{'completed':task.completed}"
+                v-for="(task,index) in list"
+            >
+                {{index}}
+                {{task.body}}
+                <strong @click="deleteTask(index)">X</strong>
+            </li>
+        </ul>
+    </template>
+    <script>
+        Vue.component('task-app',{
+            template:'#task-template',
+            props:['list'],
+            methods:{
+                toggleTasks:function(task){
+                    task.completed = !task.completed;
+                },
+                deleteTask:function(index){
+                    this.list.splice(index,1)
+                }
+            },
+            computed:{
+                remaining:function(){
+                    return  this.list.filter(function(task){
+                        return !task.completed
+                    }).length;
+                }
+            }
+        });
+        new Vue({
+            el:'#todo',
+            data:{
+                tasks:[
+                    {body:'go to the movie',completed:false},
+                    {body:'learn vue js in action',completed:true},
+                    {body:'go to the shop',completed:false}
+                ]
+            }
+        })
+    </script>
+
+
+</body>
+</html>

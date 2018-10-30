@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title></title>
+    <link rel="stylesheet" href="css/lightbox.css"/>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/pinchzoom.js"></script><!--图片放大缩小-->
+    <script src="js/lightbox.js"></script>
+</head>
+<body>
+<h3>放大缩小</h3>
+<div class="pinch-zoom">
+    <img src="http://zui.sexy/docs/img/slide1.jpg" >
+    <img src="http://zui.sexy/docs/img/slide2.jpg">
+    <img src="http://zui.sexy/docs/img/slide3.jpg">
+</div>
+<h3>弹出+放大缩小</h3>
+<div class="pinch-zoom">
+    <a class="example-image-link" href="http://zui.sexy/docs/img/slide1.jpg" data-lightbox="example-1">
+        <img class="example-image" src="http://zui.sexy/docs/img/slide1.jpg" alt="image-1" />
+    </a>
+</div>
+
+<script>
+    $('.pinch-zoom').each(function () {
+        new RTP.PinchZoom($(this), {});
+    });
+</script>
+</body>
+</html>
