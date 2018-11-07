@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.demo{
+	    width: 165px;
+	    height: 165px;
+	    border-radius: 50%;
+	    overflow: hidden;
+	    position: relative;
+		}
+		.demo i,		
+		.demo b {
+	    display: block;
+	    position: absolute;
+	    z-index: 5;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    top: 0;
+	    margin: auto;
+	    width: 2px;
+	    height: 2px;
+	    border-radius: 50%;
+		}
+		.demo i{
+			border: 20px solid #fff;
+			transition: 0.3s all linear;
+		}
+		.demo b{
+			border: 10px solid #ddd;
+			transition: 0.5s all linear;
+		}
+		.demo img{
+			position:relative;
+			z-index: 10;
+		}
+		.demo:hover i,
+		.demo:hover b{
+			border-width: 0px;
+	    width: 165px;
+	    height: 165px;
+	    z-index: 20;
+	    opacity: 0;
+	    
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="demo">
+		<i></i>
+		<b></b>
+		<img src="https://gdp.alicdn.com/imgextra/i4/263817957/O1CN0128eLy2gkSOwkfj6_!!263817957.jpg">
+	</div>
+
+</body>
+</html>
