@@ -1,0 +1,106 @@
+body, div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, input, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+li {
+  list-style: none; }
+
+input {
+  outline: none; }
+
+.container {
+  background: url(images/bg.jpg) no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  min-height: 17.78667rem;
+  overflow: hidden; }
+  .container .form-container {
+    width: 5.97333rem;
+    min-height: 17.06667rem;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 5.06667rem; }
+    .container .form-container .form-group {
+      height: 0.77333rem;
+      overflow: hidden;
+      clear: both;
+      margin-bottom: 0.18667rem; }
+      .container .form-container .form-group .input-ctrl {
+        border: 0;
+        height: 0.77333rem;
+        display: block;
+        font-size: 0.34667rem;
+        background-color: #fff; }
+      .container .form-container .form-group .txt-tel {
+        width: 100%;
+        padding-left: 0.16rem;
+        width: 5.97333rem;
+        border-radius: 3px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3) inset; }
+      .container .form-container .form-group .txt-verif {
+        float: left;
+        width: 3.93333rem;
+        padding-left: 0.26667rem;
+        border-radius: 3px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3) inset; }
+      .container .form-container .form-group .btn-verif {
+        float: right;
+        width: 1.93333rem;
+        background: url(images/btn-verified.png) no-repeat;
+        background-size: cover;
+        font-size: 0.34667rem;
+        color: #a90c00; }
+      .container .form-container .form-group .btn-retcode {
+        background: url(images/btn-retcode.png) no-repeat;
+        background-size: cover; }
+    .container .form-container .btn-submit {
+      display: block;
+      width: 4rem;
+      height: 0.88rem;
+      margin: 0.10667rem auto 0;
+      background: url(images/btn-submit.png) no-repeat;
+      background-size: cover;
+      border: 0; }
+
+.pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  z-index: 99; }
+  .pop .success,
+  .pop .error {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 5.72rem;
+    height: 7.88rem;
+    overflow: hidden;
+    text-align: center; }
+  .pop .success {
+    background: url("images/success.png") no-repeat;
+    background-size: cover; }
+  .pop .error {
+    background: url("images/error.png") no-repeat;
+    background-size: cover; }
+  .pop .txt {
+    margin: 3.73333rem auto 0;
+    width: 4.74667rem;
+    text-align: center;
+    color: #4f1ba5; }
+    .pop .txt .tit {
+      font-size: 0.85333rem;
+      margin-bottom: 0.32rem; }
+    .pop .txt .con {
+      font-size: 0.32rem;
+      line-height: 0.42667rem; }
+
+/*# sourceMappingURL=style.css.map */
