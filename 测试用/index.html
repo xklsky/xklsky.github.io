@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html  lang="zh-CN">
+<html lang="zh-CN">
+
 <head>
-	<meta charset="UTF-8">
-	<title></title>
-	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	 <link rel="stylesheet" href="style.css">
-	 <script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
 </head>
+
 <body>
-	
+
 	<div class="container">
 		<div class="form-container">
-			<div class="form-group">
-				<input type="tel" class="input-ctrl txt-tel" id="d_mobile" placeholder="请输入交易订单中收货人的手机号码" />
-			</div>	
-			<div class="form-group">
-				<input type="text" id="d_verycode" class="input-ctrl txt-verif" placeholder="请输入验证码" />
-                <input type="hidden" id="d_wxid" />
-                <input type="button" class="input-ctrl btn-verif" value="" id="d_sendmsg" />
-                <input type="button" class="input-ctrl btn-verif btn-retcode" value="60秒" id="d_retcode" style="display: none;" />
-			</div>	
-			<input type="button" class="btn-submit" id="d_getredpack" value="" />	
+			<input type="text" class="btn-text" id="" />
+			<input type="submit" class="btn-submit" id="d_sendmsg" value="点击查询" />	
 		</div>
 	</div>
 
@@ -28,164 +25,46 @@
   <div class="pop pop-success">
      <div class="success">
          <div class="txt">
-             <h1 class="tit">验证成功!</h1>
-             <p class="con">你将马上收到红包服务通知<br>赶紧去微信界面领取吧！</p>
+             <h1 class="tit">恭喜您</h1>
+             <p class="con">获得1000元无门槛券</p>
+             <p class="tip">交易成功后我们将会在1-7个工作日内推送至您账户</p>
          </div>
      </div>
  </div>
  <!-- 错误 -->
- <div class="pop pop-error">
+<!--  <div class="pop pop-error">
      <div class="error">
          <div class="txt">
-             <h1 class="tit">抱歉!</h1>
-             <p class="con">暂无可领红包的订单<br>或者换个手机号码吧</p>
+             <h1 class="tit">很抱歉</h1>
+             <p class="con">您未获得1000元无门槛券</p>
          </div>
      </div>
- </div>
+ </div> -->
 
-	<script>
-		//获取屏幕宽度(viewport)
-		let htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
-		//console.log(htmlWidth);
-		//获取html的dom
-		let htmlDom = document.getElementsByTagName('html')[0];
-		//设置html的fontSize
+
+	<script type="text/javascript">
+		var htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
+		var htmlDom = document.getElementsByTagName('html')[0];	
 		htmlDom.style.fontSize = htmlWidth / 10 + 'px';
-		window.addEventListener('resize',(e)=>{
-		    let htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
-		    htmlDom.style.fontSize = htmlWidth / 10 + 'px';
-		});
+    window.addEventListener('resize',function(){
+        var htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        htmlDom.style.fontSize = htmlWidth / 10 + 'px';
+    });
 
-		$(function () {
+    $(function(){
 
-        var getCode = $('#d_sendmsg');
+    	$('#d_sendmsg').click(function(){
 
-        var resetCode = $('#d_retcode');
+    	})
 
-        var count = 60;
-
-        $("#d_sendmsg").click(function () {
-
-            var mobile = $("#d_mobile").val();
-
-            if (mobile.length == 0) {
-                tishi('提示', '请输入手机号码');
-                $("#d_mobile").focus();
-                return false;
-            }
-
-            if (mobile.length != 11) {
-                tishi('提示', '请输入有效的手机号码！');
-                $("#d_mobile").focus();
-                return false;
-            }
-
-            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(14[0-9]{1})|(19[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-            if (!myreg.test(mobile)) {
-                tishi('提示', '请输入有效的手机号码！');
-                $("#d_mobile").focus();
-                return false;
-            }
-
-
-            var countdown = setInterval(CountDown, 1000);
-
-
-            $.post("/pb/SendVeryCode", { mobile: mobile }, function (d) {
-
-
-
-                if (d.IsCorrect) {
-
-                    $("#d_wxid").val(d.Info);
-                    tishi('提示', '验证码发送成功');
-
-                }
-                else {
-
-                    tishi('提示', d.Info);
-
-                }
-
-
-            }, "json");
-
-
-            //60秒滚动
-            function CountDown() {
-                getCode.hide();
-                resetCode.show();
-                resetCode.val(count + '秒');
-                if (count == 0) {
-                    getCode.show();
-                    resetCode.hide();
-                    clearInterval(countdown);
-                    count = 60;
-                }
-                count--
-            }
-
-
-        });
-
-
-        //提示
-		    function tishi(tit, con) {
-		        $('.pop-error').show();
-		        $('.pop-error .tit').text(tit);
-		        $('.pop-error .con').text(con);
-		    }
-
-
-
-
-
-        $("#d_getredpack").click(getredpack);
-
-
-        //隐藏弹窗
-        $('.pop').click(function () {
-            $(this).hide();
-        });
-
+    	function tishi(tit, con) {
+	        $('.pop-error').show();
+	        $('.pop-error .tit').text(tit);
+	        $('.pop-error .con').text(con);
+	    }
 
     })
-
-    //获取红包代码
-    function getredpack() {
-
-        var verycode = $("#d_verycode").val();
-        if (verycode.length == 0) {
-            tishi('提示', '请输入验证码');
-            $("#d_verycode").focus();
-            return false;
-        }
-
-
-        var wxid = $("#d_wxid").val(); //
-        if (wxid.length == 0) {
-            tishi('提示', '验证码获取错误请重试');
-            return false;
-        }
-
-
-        $.post("/pb/SendRedPack", { wxid: wxid, verycode: verycode }, function (d) {
-
-            if (d.IsCorrect) {
-                //成功弹窗
-                $('.pop-success').show();
-
-            }
-            else {
-                tishi('提示', d.Info);
-            }
-
-        }, "json");
-
-
-    }
-
-	</script>
-
+  </script>
 </body>
+
 </html>
