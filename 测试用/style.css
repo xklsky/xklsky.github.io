@@ -64,37 +64,7 @@ input {
     font-size: 0;
     border: 0; }
 
-.pop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  z-index: 99; }
-  .pop .container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    width: 6.66667rem;
-    height: 4rem;
-    overflow: hidden;
-    text-align: center;
-    background: url(images/pop.png) no-repeat;
-    background-size: cover; }
-  .pop .txt {
-    margin: 1.46667rem auto 0;
-    width: 5.33333rem;
-    text-align: center;
-    font-size: 0.37333rem;
-    color: #fff; }
-    .pop .txt .tit {
-      font-size: 0.37333rem; }
-    .pop .txt .tip {
-      font-size: 0.18667rem; }
+.layui-m-layercont {
+  line-height: 1.3; }
 
 /*# sourceMappingURL=style.css.map */
