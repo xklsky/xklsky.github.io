@@ -55,10 +55,10 @@ input {
     font-size: 0.18667rem; }
   .layui-m-layer0 .layui-m-layerchild .layui-m-layerbtn {
     position: absolute;
-    top: 0.4rem;
-    right: 0.4rem;
-    width: 0.53333rem;
-    height: 0.53333rem;
+    top: 0.32rem;
+    right: 0.32rem;
+    width: 0.8rem;
+    height: 0.8rem;
     border-radius: 50%;
     background: transparent;
     font-size: 0;
