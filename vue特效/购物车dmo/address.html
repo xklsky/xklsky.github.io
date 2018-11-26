@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <style>
+        li,ul{
+            margin: 0;
+            padding: 0;
+        }
+        li{list-style: none}
+        .checkbox-cap{
+            overflow: hidden;
+        }
+        .checkbox-cap li{
+            text-align: center;
+            color: #ccc;
+            border-bottom: 2px solid currentColor;
+            position: relative;
+            padding: 14px 0;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .checkbox-cap li:before{
+            content: '';
+            display: block;
+            width: 14px;
+            height: 14px;
+            background: currentColor;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -7px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        .checkbox-cap .cur{
+            color: #f0ad4e;
+        }
+        .checkout-title{
+            text-align: center;
+            margin: 30px 0;
+            font-size: 20px;
+            font-weight: 700;
+            position: relative;
+            height: 30px;
+        }
+        .checkout-title span{
+            display: block;
+            color: #999;
+            background: #fff;
+            width: 130px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 2;
+        }
+        .checkout-title:before{
+            display: block;
+            content: '';
+            position: absolute;
+            top: 14px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-top: 1px solid #ccc;
+        }
+        .addr-list{
+            overflow: hidden;
+        }
+        .addr-list li{
+            margin-bottom: 20px;
+        }
+        .addr-list li .li_in_wrap{
+            border: 2px solid #ccc;
+            padding: 10px;
+            height: 142px;
+            position: relative;
+        }
+        .addr-list li .li_in_wrap:hover,
+        .addr-list li.check .li_in_wrap{
+            border-color: #f0ad4e;
+        }
+
+
+        .addr-list li .li_in_wrap dt,
+        .addr-list li .li_in_wrap dd{
+            margin-bottom: 5px;
+        }
+
+        .addr-list li .li_in_wrap .addr-opration{
+            position: absolute;
+            right: 10px;
+        }
+        /*编辑*/
+        .addr-list li .li_in_wrap .addr-edit{
+            top: 10px;
+        }
+        .addr-list li .li_in_wrap .check{
+            display: none;
+        }
+        /*删除*/
+        .addr-list li .li_in_wrap .addr-del{
+            bottom: 10px;
+        }
+
+        /*设为默认*/
+        .addr-list li .li_in_wrap .addr-default,
+        .addr-list li .li_in_wrap .addr-set-default{
+            left: 10px;
+            right: auto;
+            bottom: 10px;
+        }
+        .addr-list li .li_in_wrap .addr-default{
+            color: #f0ad4e;
+        }
+        .addr-list li .li_in_wrap .addr-set-default{
+            display: none;
+        }
+        .addr-list li:hover .li_in_wrap .addr-set-default{
+            display: block;
+        }
+        .addr-list .add_addr{
+            text-align: center;
+        }
+        .addr-list .add_addr .add_pic{
+            display: block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            color: #ccc;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+        .addr-list .add_addr .add_pic:before,
+        .addr-list .add_addr .add_pic:after{
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background: currentColor;
+        }
+        .addr-list .add_addr .add_pic:before{
+            width: 1px;
+            height: 100%;
+        }
+        .addr-list .add_addr .add_pic:after{
+            width: 100%;
+            height: 1px;
+        }
+        .more{
+            text-align: center;
+            margin:0 auto;
+
+        }
+        .more a{
+            color: #f0ad4e;
+            text-decoration: none;
+        }
+        .more a:hover .caret{
+            transform: rotate(180deg);
+        }
+
+        .shipping-method-wrap ul{
+            text-align: center;
+            font-size: 0;
+        }
+        .shipping-method-wrap ul li{
+            width: 30%;
+            padding: 30px 0;
+            border: 2px solid #ccc;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .shipping-method-wrap ul li.check{
+            border-color: #f0ad4e;
+        }
+        .shipping-method-wrap ul li:first-child{
+            margin-right: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app" class="container-fluid">
+    <div class="checkbox">
+        <div class="checkbox-cap">
+            <ul>
+                <li class="col-md-3 cur">地址确认</li>
+                <li class="col-md-3">查看订单</li>
+                <li class="col-md-3">支付</li>
+                <li class="col-md-3">订单确认</li>
+            </ul>
+        </div>
+
+        <div class="checkout-title">
+            <span>配送地址</span>
+        </div>
+
+        <div class="addr-list-wrap">
+            <div class="addr-list">
+                <ul>
+                    <li class="col-md-3" v-for="(item,index) in filterAddress" v-bind:class="{'check':index==currentIndex}" @click="currentIndex=index">
+                        <div class="li_in_wrap">
+                            <dl v-if="!item.edit">
+                                <dt>{{item.userName}}</dt>
+                                <dd>{{item.streetName}}</dd>
+                                <dd>{{item.tel}}</dd>
+                            </dl>
+                            <dl v-else>
+                                <dt><input type="text" v-model="item.userName"/></dt>
+                                <dd><input type="text" v-model="item.streetName"/></dd>
+                                <dd><input type="text" v-model="item.tel"/></dd>
+                            </dl>
+                            <div class="addr-opration addr-edit" @click="editProduct(item)">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                <!--<a href="javascripts:;" class="addr-edit-btn">编辑</a>-->
+                            </div>
+                            <div class="addr-opration addr-del" @click="delProduct(index)">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <!--<a href="javascripts:;" class="addr-del-btn">删除</a>-->
+                            </div>
+                            <div class="addr-opration addr-set-default" v-if="!item.isDefault" @click="setDefault(item.addressId)">
+                                <a href="javascripts:;" class="addr-default-btn">设为默认</a>
+                            </div>
+                            <div class="addr-opration addr-default" v-if="item.isDefault">默认地址</div>
+                        </div>
+                    </li>
+                    <li class="col-md-3 add_addr">
+                        <div class="li_in_wrap">
+                            <span class="add_pic"></span>
+                            <span>添加新地址</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="more"><a href="javascript:;" @click="loadMore">more<span class="caret"></span></a></div>
+
+        <div class="checkout-title">
+            <span>配送方式</span>
+        </div>
+
+        <div class="shipping-method-wrap">
+            <div class="shipping-method">
+                <ul>
+                    <li v-bind:class="{'check':shoppingMethod==1}" @click="shoppingMethod=1">
+                        <div class="name">标准配送</div>
+                        <div class="price">Free</div>
+                    </li>
+                    <li v-bind:class="{'check':shoppingMethod==2}" @click="shoppingMethod=2">
+                        <div class="name">高级配送</div>
+                        <div class="price">180</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="next-btn-wrap">
+            <a href="javascript:;" class="btn btn-warning">下一步</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/address.js"></script>
+</body>
+</html>
