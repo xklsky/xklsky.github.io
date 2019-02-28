@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"><!--bootstrap，若删除标签插件样式需重写-->
+    <link rel="stylesheet" href="css/bootstrap-tagsinput.css"><!--标签插件样式-->
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<!--
+    <input type="text" class="J_outVal outval" data-notxt="true" id="demo1" required title="材料成分">
+    data-notxt="true"   显示复选框相应的文本框，false不显示
+    required            必填项
+    title="材料成分"     用来弹出框提示
+-->
+<div class="get-check-val-box J_getCheckWrap">
+    <div class="title">*材料成分</div>
+    <div class="ctrl-box">
+        <div class="out-wrap">
+            <input type="text" class="J_outVal outval" data-notxt="true" id="demo1" required title="材料成分">
+        </div>
+        <div class="J_wrap wrap">
+            <ul class="J_check check-box">
+
+            </ul>
+            <div class="btn-group">
+                <input type="button" value="取消" class="J_no">
+                <input type="button" value="确定" class="J_yes">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="get-check-val-box J_getCheckWrap">
+    <div class="title">*材料成分2</div>
+    <div class="ctrl-box">
+        <div class="out-wrap">
+            <input type="text" class="J_outVal outval" data-notxt="true" id="demo2" required title="材料成分2">
+        </div>
+        <div class="J_wrap wrap">
+            <ul class="J_check check-box">
+
+            </ul>
+            <div class="btn-group">
+                <input type="button" value="取消" class="J_no">
+                <input type="button" value="确定" class="J_yes">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="get-check-val-box J_getCheckWrap">
+    <div class="title">*颜色1</div>
+    <div class="ctrl-box">
+        <div class="out-wrap">
+            <input type="text" class="J_outVal outval" data-notxt="false" id="demo3">
+        </div>
+        <div class="J_wrap wrap">
+            <ul class="J_check check-box">
+
+            </ul>
+            <div class="btn-group">
+                <input type="button" value="取消" class="J_no">
+                <input type="button" value="确定" class="J_yes">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<input type="submit" id="submit"/>
+
+<script src="js/jquery.js"></script>
+<script src="js/layer/layer.js"></script><!--弹出框插件-->
+<script src="js/bootstrap-tagsinput.js"></script><!--标签插件-->
+<script src="js/getCheckVal.js"></script>
+<script>
+$(function(){
+    getCheckVal($('#demo1'),'data/index.json');
+    getCheckVal($('#demo2'),'data/index.json');
+    getCheckVal($('#demo3'),'data/demo2.json');
+
+    $('#submit').click(function(){
+        valIsNull();
+
+        console.log($('#demo1').val());
+        console.log($('#demo2').val());
+        console.log($('#demo3').val());
+    });
+
+
+})
+</script>
+</body>
+</html>
