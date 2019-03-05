@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .img-responsive {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .item {
+            position: relative;
+            overflow: hidden;
+            width: 33.33333333%;
+        }
+
+
+        .item .overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(168, 0, 0, .4);
+            -webkit-transition: all .5s cubic-bezier(.5, .15, .17, 1) .3s;
+            transition: all .5s cubic-bezier(.5, .15, .17, 1) .3s;
+            -webkit-transform: translateY(100%);
+            -ms-transform: translateY(100%);
+            transform: translateY(100%);
+        }
+
+        .item:hover .overlay {
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        .item img {
+            background-size: 120%;
+            background-position: -35px -35px;
+            background-repeat: no-repeat;
+            width: 100%;
+            -webkit-transition: 1s cubic-bezier(.5, .15, .17, 1);
+            transition: 1s cubic-bezier(.5, .15, .17, 1);
+        }
+
+        .item:hover img {
+            background-position: 0 0;
+        }
+
+        .item .text-block {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            text-align: center;
+            opacity: 0;
+            -webkit-transition: all .5s cubic-bezier(.5, .15, .17, 1) .3s;
+            transition: all .5s cubic-bezier(.5, .15, .17, 1) .3s;
+        }
+
+        .item:hover .text-block {
+            opacity: 1;
+        }
+
+        .display-table {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+
+        .display-table .display-table-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .item p {
+            color: #fff;
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 300;
+            font-size: 1.875em;
+            line-height: 1.2em;
+        }
+
+        .link_styled {
+            text-align: center;
+            margin: 30px auto 0;
+        }
+
+        .link_styled a {
+            position: relative;
+            display: inline-block;
+            padding: 0 5px 6px;
+            font-size: 1.125em;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .link_styled a:before {
+            left: 0;
+            right: 0;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            content: " ";
+            display: block;
+            background: #e30000;
+        }
+
+        .link_styled a:after {
+            left: 50%;
+            right: 50%;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            content: " ";
+            display: block;
+            background: #e30000;
+        }
+
+        @media (max-width: 991px) {
+            .item p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="item">
+        <div class="overlay"></div>
+        <img style="background-image: url('https://sjcam.com/wp-content/uploads/2017/05/section_bottom_tile_1-1.jpg')"
+            src="https://sjcam.com/wp-content/themes/sjcam/assets/gfx/section_bottom_shape.png" class="img-responsive">
+        <div class="text-block">
+            <div class="display-table">
+                <div class="display-table-cell">
+                    <p>Got questions?<br>We’d love to answer</p>
+                    <div class="link_styled">
+                        <a href="https://sjcam.com/faq/">Find help</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
