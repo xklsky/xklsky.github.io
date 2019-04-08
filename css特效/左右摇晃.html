@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .lighthouse{
+            -webkit-transform-origin: 50% 90%;
+            -moz-transform-origin: 50% 90%;
+            transform-origin: 50% 90%;
+            -webkit-animation: lighthouse 4s 0.1s infinite alternate cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            -moz-animation: lighthouse 4s 0.1s infinite alternate cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            animation: lighthouse 4s 0.1s infinite alternate cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            margin: 0px -64px;
+            background-size: 128px 224px;
+            height: 224px;
+            width: 128px;
+            background-image: url(http://matthew.wagerfield.com/parallax/assets/images/lighthouse.png);
+            background-repeat: no-repeat;
+            bottom: 64px;
+            position: absolute;
+            right: 20%;
+        }
+        @keyframes lighthouse{
+            0% {
+                -webkit-transform: translate3d(15%,0,0) rotateZ(10deg);
+                -moz-transform: translate3d(15%,0,0) rotateZ(10deg);
+                transform: translate3d(15%,0,0) rotateZ(10deg);
+            }
+            100% {
+                -webkit-transform: translate3d(-15%,0,0) rotateZ(-10deg);
+                -moz-transform: translate3d(-15%,0,0) rotateZ(-10deg);
+                transform: translate3d(-15%,0,0) rotateZ(-10deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lighthouse depth-60"></div>
+</body>
+</html>
